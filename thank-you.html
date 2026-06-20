@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terima Kasih — Mandarinjer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: #FAFAF8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #E5E5E0;
+    border-radius: 20px;
+    padding: 48px 36px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  }
+  .icon { font-size: 60px; margin-bottom: 20px; }
+  h1 { font-size: 24px; font-weight: 800; color: #1A1A1A; margin-bottom: 12px; }
+  p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 10px; }
+  .status-box {
+    background: #DCFCE7;
+    border: 1px solid #86EFAC;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #166534;
+    font-weight: 500;
+  }
+  .pending-box {
+    background: #FFFBEA;
+    border: 1px solid #F0D070;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #92400E;
+    font-weight: 500;
+    display: none;
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 28px;
+    background: #B8121B;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .btn:hover { opacity: .9; }
+  .ssm { font-size: 11px; color: #aaa; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon" id="status-icon">⏳</div>
+  <h1 id="status-title">Menyemak pembayaran...</h1>
+  <p id="status-msg">Sila tunggu sebentar.</p>
+
+  <div class="status-box" id="success-box" style="display:none;">
+    ✅ Pembayaran berjaya! Email pengesahan akan dihantar dalam masa 24 jam.<br>
+    Laoshi akan menghubungi anda melalui WhatsApp tidak lama lagi.
+  </div>
+  <div class="pending-box" id="pending-box">
+    ⏳ Pembayaran anda masih dalam proses. Sila semak email untuk pengesahan.
+  </div>
+  <div class="status-box" id="fail-box" style="display:none;background:#FEECEC;border-color:#FCA5A5;color:#991B1B;">
+    ❌ Pembayaran tidak berjaya. Sila cuba semula atau hubungi kami.
+  </div>
+
+  <a href="https://www.mandarinjer.com" class="btn">Kembali ke Mandarinjer →</a>
+  <p class="ssm">Mandarinjer® · SSM: KT0470811-D</p>
+</div>
+
+<script>
+  const p = new URLSearchParams(window.location.search);
+  const status = p.get('status_id');
+
+  if(status === '1'){
+    document.getElementById('status-icon').textContent = '🎉';
+    document.getElementById('status-title').textContent = 'Pembayaran Berjaya!';
+    document.getElementById('status-msg').textContent = 'Selamat datang ke Mandarinjer Online Platform!';
+    document.getElementById('success-box').style.display = 'block';
+  } else if(status === '2'){
+    document.getElementById('status-icon').textContent = '⏳';
+    document.getElementById('status-title').textContent = 'Pembayaran Dalam Proses';
+    document.getElementById('status-msg').textContent = 'Transaksi anda sedang diproses.';
+    document.getElementById('pending-box').style.display = 'block';
+  } else if(status === '3'){
+    document.getElementById('status-icon').textContent = '❌';
+    document.getElementById('status-title').textContent = 'Pembayaran Gagal';
+    document.getElementById('status-msg').textContent = 'Transaksi tidak dapat diproses.';
+    document.getElementById('fail-box').style.display = 'block';
+  } else {
+    document.getElementById('status-icon').textContent = '✅';
+    document.getElementById('status-title').textContent = 'Terima Kasih!';
+    document.getElementById('status-msg').textContent = 'Pendaftaran anda telah diterima.';
+    document.getElementById('success-box').style.display = 'block';
+  }
+</script>
+</body>
+</html>
