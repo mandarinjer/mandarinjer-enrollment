@@ -8,7 +8,7 @@
 // 4. Redeploy the site
 
 const TOYYIBPAY_API = "https://toyyibpay.com/index.php/api/createBill";
-const BASE_PRICE_CENTS = 100; // RM1.00 in cents
+const BASE_PRICE_CENTS = 8900; // RM89.00 in cents
 
 exports.handler = async function (event, context) {
   // Only allow POST
